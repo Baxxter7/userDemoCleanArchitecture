@@ -1,0 +1,22 @@
+# IDEs
+.vs/
+.idea/
+*.user
+*.suo
+
+# Build artifacts
+bin/
+obj/
+out/
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Dependencies and packages
+packages/
+*.nupkg
+
+# User secrets and local settings
+appsettings.*.local.json
+.env
