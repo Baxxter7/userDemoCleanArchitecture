@@ -1,3 +1,4 @@
+using Application.Dtos;
 using Application.Services;
 using Domain.Entities;
 using Microsoft.AspNetCore.Http;
@@ -20,7 +21,13 @@ namespace UserDemoApi.Controllers
         [HttpGet("{name}")]
         public IActionResult Get([FromRoute] string name)
         {
-            return Ok(_userService.Get("Josue"));
+            return Ok(_userService.Get(name));
         }
+        
+        [HttpGet]
+        public IActionResult GetAll() =>  Ok(_userService.GetAll());
+        
+        [HttpPost]
+        public IActionResult Post([FromBody] UserDto user)  =>  Ok(_userService.Add(user));
     }
 }

@@ -1,12 +1,34 @@
+using Application.Dtos;
 using Domain.Entities;
+using Domain.Interfaces;
 
 namespace Application.Services;
 
 public class UserService
 {
-    public User Get(string name)
+    private readonly IUserRepository _userRepository;
+
+    public UserService(IUserRepository userRepository)
     {
-        return new User() { Name =  name};
+        _userRepository = userRepository;
     }
+
+    public User? Get(string name)
+    {
+        return _userRepository.Get(name);
+    }
+
+    public List<User>? GetAll() => _userRepository.GetAll();
     
+    public int Add(UserDto user)
+    {
+        var userEntity = new User
+        {
+            Name = user.Name,
+            Email = user.Email,
+            Password = user.Password,
+        };
+        
+        return _userRepository.Add(userEntity);
+    }
 }
